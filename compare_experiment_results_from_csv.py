@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import os
 
 
-CSV_FOLDER_PATH = "/home/umut/Desktop/TEST_EXPERIMENTS/csv_files"
+CSV_FOLDER_PATH = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files_0.5conf"
 
 CSV_NAMES = os.listdir(CSV_FOLDER_PATH)
 
@@ -67,7 +67,7 @@ handles, labels = axs[0, 0].get_legend_handles_labels()
 fig.legend(handles, labels, loc='upper left')
 
 #save figure
-plt.savefig(os.path.join("/home/umut/Desktop/TEST_EXPERIMENTS/png_files", "all_experiments.png"))
+plt.savefig(os.path.join("/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/png_files_0.5conf", "all_experiments.png"))
 
 
     

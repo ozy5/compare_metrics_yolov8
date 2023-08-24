@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 from copy import deepcopy
 import pandas as pd
 
-CONF_THRESHOLD = 0.2
+CONF_THRESHOLD = 0.4
 
 # IoU_threshold = 0.5
 # IoU_thresholds = [0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.63, 0.66, 0.69, 0.72, 0.75, 0.78, 0.81, 0.84, 0.87, 0.9, 0.93, 0.96]
@@ -136,7 +136,7 @@ for training_name in TRAININGS:
 
 
     #save the dataframe as csv
-    df_mean.to_csv("csv_files/" + NAME + "_recall_precision_F1_score_TP_FP_FN.csv", index=False)
+    df_mean.to_csv("csv_files_0.5conf/" + NAME + "_recall_precision_F1_score_TP_FP_FN.csv", index=False)
 
     ## VISIULATION PART
 
@@ -174,5 +174,5 @@ for training_name in TRAININGS:
     axs[1,2].set_xlabel("IoU Threshold")
     axs[1,2].set_ylabel("False Negative Count")
 
-    plt.savefig("png_files/" + NAME + "_recall_precision_F1_score_TP_FP_FN.png")
+    plt.savefig("png_files_0.5conf/" + NAME + "_recall_precision_F1_score_TP_FP_FN.png")
 

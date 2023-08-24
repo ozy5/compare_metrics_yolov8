@@ -11,7 +11,7 @@ real_exp_name_1 = "_".join(EXP_NAME_1.split("_")[0:2])
 
 real_exp_name_2 = "_".join(EXP_NAME_2.split("_")[0:2])
 
-CSV_FOLDER_PATH = "/home/umut/Desktop/TEST_EXPERIMENTS/csv_files"
+CSV_FOLDER_PATH = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files_0.5conf"
 
 # This code will compare the results of two experiments.
 # The result will be a 4x3 plot.
@@ -108,12 +108,12 @@ df_difference["IoU_Threshold"] = df_exp1["IoU_Threshold"]
 df_difference["Recall_Diff"] = (df_exp2["Recall"] - df_exp1["Recall"]) / (1 - df_exp1["Recall"]) * 100
 df_difference["Precision_Diff"] = (df_exp2["Precision"] - df_exp1["Precision"]) / (1 - df_exp1["Precision"]) * 100
 df_difference["F1_Score_Diff"] = (df_exp2["F1_Score"] - df_exp1["F1_Score"]) / (1 - df_exp1["F1_Score"]) * 100
-# df_difference["True_Positive_Count_Diff"] = (df_exp2["True_Positive_Count"] - df_exp1["True_Positive_Count"]) / (df_exp1["True_Positive_Count"]) * 100
-# df_difference["False_Positive_Count_Diff"] = (df_exp2["False_Positive_Count"] - df_exp1["False_Positive_Count"]) / (df_exp1["False_Positive_Count"]) * 100
-# df_difference["False_Negative_Count_Diff"] = (df_exp2["False_Negative_Count"] - df_exp1["False_Negative_Count"]) / (df_exp1["False_Negative_Count"]) * 100
-df_difference["True_Positive_Count_Diff"] = (df_exp2["True_Positive_Count"] - df_exp1["True_Positive_Count"])
-df_difference["False_Positive_Count_Diff"] = (df_exp2["False_Positive_Count"] - df_exp1["False_Positive_Count"])
-df_difference["False_Negative_Count_Diff"] = (df_exp2["False_Negative_Count"] - df_exp1["False_Negative_Count"])
+df_difference["True_Positive_Count_Diff"] = (df_exp2["True_Positive_Count"] - df_exp1["True_Positive_Count"]) / (df_exp1["True_Positive_Count"]) * 100
+df_difference["False_Positive_Count_Diff"] = (df_exp2["False_Positive_Count"] - df_exp1["False_Positive_Count"]) / (df_exp1["False_Positive_Count"]) * 100
+df_difference["False_Negative_Count_Diff"] = (df_exp2["False_Negative_Count"] - df_exp1["False_Negative_Count"]) / (df_exp1["False_Negative_Count"]) * 100
+# df_difference["True_Positive_Count_Diff"] = (df_exp2["True_Positive_Count"] - df_exp1["True_Positive_Count"])
+# df_difference["False_Positive_Count_Diff"] = (df_exp2["False_Positive_Count"] - df_exp1["False_Positive_Count"])
+# df_difference["False_Negative_Count_Diff"] = (df_exp2["False_Negative_Count"] - df_exp1["False_Negative_Count"])
 
 #plot difference between the two experiments for each metric
 #difference is calculated as (EXP2 - EXP1) / EXP1 * 100
@@ -140,7 +140,7 @@ handles, labels = axs[0, 0].get_legend_handles_labels()
 fig.legend(handles, labels, loc='upper left')
 
 #save figure
-plt.savefig(os.path.join("/home/umut/Desktop/TEST_EXPERIMENTS/png_files", "COMPARISON(last_row_actual_diff)__" + real_exp_name_1 + "_vs_" + real_exp_name_2 + ".png"))
+plt.savefig(os.path.join("/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/png_files_0.5conf", "COMPARISON__" + real_exp_name_1 + "_vs_" + real_exp_name_2 + ".png"))
 
 #plt.show()
 
