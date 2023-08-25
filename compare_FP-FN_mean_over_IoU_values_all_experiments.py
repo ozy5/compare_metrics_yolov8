@@ -2,6 +2,7 @@ import os
 import shutil
 import pandas as pd
 import glob
+import numpy as np
 import matplotlib.pyplot as plt
 
 csv_path_exp_2 = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files/not_filtered_recall_precision_F1_score_TP_FP_FN.csv"
@@ -30,16 +31,23 @@ df_2_mean = df_2_mean.drop(["IoU_Threshold"])
 
 paths = sorted(glob.glob("/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files/*_recall_precision_F1_score_TP_FP_FN.csv"))[:-1]
 
+fig = plt.subplots(figsize =(20, 8))
 
+#create a dataframe to store the percentage difference of FP and FN values of each experiment compared to not-filtered for each experiment
 
+data = {"Experiment_Name":[],"Percentage_Difference_FP":[],"Percentage_Difference_FN":[]}
+barWidth = 0.33
+br1 = np.arange(len(paths))
+br2 = [x + barWidth for x in br1]
 
 for csv_path_exp_1 in paths:
 
-    csv_path_exp_1 = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files/175_100_recall_precision_F1_score_TP_FP_FN.csv"
 
     exp_1_full_name = os.path.basename(csv_path_exp_1)
 
     exp_1_name = "_".join(exp_1_full_name.split("_")[0:2])
+
+    print(exp_1_name)
 
 
 
@@ -79,16 +87,36 @@ for csv_path_exp_1 in paths:
     # take the percentage difference according to df_2_mean
     df_diff_percentage = df_diff / df_2_mean * 100
 
-    # plot the FP and FN difference as bar plot
-    df_diff_percentage[["False_Positive_Count", "False_Negative_Count"]].plot.bar(rot=0, ax=plt.gca(), figsize=(15, 10))
-
-plt.title(f"Percentage Difference of False Positive and False Negative Counts for {exp_1_name} and {exp_2_name}")
-plt.xlabel("IoU Threshold")
-plt.ylabel("Percentage Difference")
-plt.legend(loc="upper right")
+    # add row to data
+    data["Experiment_Name"].append(exp_1_name)
+    data["Percentage_Difference_FP"].append(df_diff_percentage["False_Positive_Count"])
+    data["Percentage_Difference_FN"].append(df_diff_percentage["False_Negative_Count"])
 
 
-plt.show()
+
+
+    
+# plot the FP and FN difference seperately for each experiment as percentage to bar plot. include label, edge color, color. each experiment should be seperated
+plt.bar(br1, data["Percentage_Difference_FN"], color ='r', width = barWidth,
+        edgecolor ='grey', label ='False Negative')
+plt.bar(br2, data["Percentage_Difference_FP"], color ='b', width = barWidth,
+        edgecolor ='grey', label ='False Positive')
+
+
+
+plt.xlabel("IoU Threshold", fontweight ='bold', fontsize = 15)
+plt.ylabel("Percentage Difference", fontweight ='bold', fontsize = 15)
+plt.title("Percentage Difference of FP and FN Values of Experiments Compared to not-filtered", fontweight ='bold', fontsize = 20)
+plt.xticks([r + barWidth for r in range(len(paths))], data["Experiment_Name"])
+
+
+plt.legend()
+
+
+plt.savefig("/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/png_files/all_experiments_percentage_difference_FP_FN.png")
+
+
+
 
 
 

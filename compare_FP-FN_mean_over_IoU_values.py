@@ -2,9 +2,9 @@ import os
 import shutil
 import pandas as pd
 
-csv_path_exp_1 = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files/175_100_recall_precision_F1_score_TP_FP_FN.csv"
+csv_path_exp_1 = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files_0.5conf/175_100_recall_precision_F1_score_TP_FP_FN.csv"
 
-csv_path_exp_2 = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files/not_filtered_recall_precision_F1_score_TP_FP_FN.csv"
+csv_path_exp_2 = "/home/umut/Desktop/TEST_EXPERIMENTS/compare_metrics_yolov8/csv_files_0.5conf/not_filtered_recall_precision_F1_score_TP_FP_FN.csv"
 
 exp_1_name = "175_100_filtered"
 
@@ -58,18 +58,5 @@ print(df_1_mean)
 print(df_2_mean)
 
 print(df_diff_percentage)
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
