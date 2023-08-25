@@ -177,10 +177,3 @@ def calculate_recall_and_precision(all_predictions, label_paths, IoU_threshold=0
 def get_F1_score_from_recall_and_precision(recall, precision):
     #harmonic mean of recall and precision
     return (2 * recall * precision) / (recall + precision)
-
-
-if("__main__" == __name__):
-    x = get_xyxy_bboxes_from_YOLO_format_txt("/home/umut/Desktop/thermal-disaster-dataset/HIT_UAV_and_NII_CU_dataset/test/labels/0002.txt")
-    print(x)
-
-
